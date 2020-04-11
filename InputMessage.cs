@@ -1,5 +1,4 @@
-using System;
-using Microsoft.Extensions.Configuration;
+using System.Text.RegularExpressions;
 
 namespace com.businesscentral
 {
@@ -13,9 +12,14 @@ namespace com.businesscentral
 
         public InputMessage(string requestMessage)
         {
-           Command = MessageCommand.AskOrderDetail;
-           MessageOrderNumber="20NB-ORD007";
+        
+            Command = MessageCommand.AskOrderDetail;
 
+            Match match = Regex.Match(requestMessage,"is(.*?) order"); // (.*?) 
+        
+            if( match.Success )
+                MessageOrderNumber=match.Value.Replace("is ",string.Empty).Replace(" order",string.Empty);
+ 
         }
 
     }
