@@ -15,7 +15,7 @@ namespace com.businesscentral
         
             Command = MessageCommand.AskOrderDetail;
 
-            Match match = Regex.Match(requestMessage,"is(.*?) order"); // (.*?) 
+            Match match = Regex.Match(requestMessage,"is (.*?) order"); // (.*?) 
         
             if( match.Success )
                 MessageOrderNumber=match.Value.Replace("is ",string.Empty).Replace(" order",string.Empty);
