@@ -14,7 +14,7 @@ namespace com.businesscentral
         public InputMessage(string requestMessage)
         {
            Command = MessageCommand.AskOrderDetail;
-           MessageOrderNumber="20NB-ORD010";
+           MessageOrderNumber="20NB-ORD007";
 
         }
 
