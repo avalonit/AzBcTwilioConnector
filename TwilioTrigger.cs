@@ -42,7 +42,7 @@ namespace com.businesscentral
              var response = new MessagingResponse().Message(replyText);
             return new HttpResponseMessage
             {
-                Content = new StringContent(response.ToString(), Encoding.UTF8, "application/text")
+                Content = new StringContent(response.ToString(), Encoding.UTF8, "application/xml")
             };
         }
 

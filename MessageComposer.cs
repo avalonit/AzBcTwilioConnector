@@ -19,24 +19,24 @@ namespace com.businesscentral
             SalesOrder order=orders.Value[0];
 
             message.Append(String.Format("The {0} order ",inputMessage.MessageOrderNumber));
-            message.Append(String.Format("is in status {0} ",order.Status));
+            message.Append(String.Format("is in status {0}, ",order.Status));
             
             if(order.FullyShipped)
-                message.Append(String.Format("the order is fully shipped "));
+                message.Append(String.Format("the order is fully shipped, "));
             else if(order.PartialShipping)
-                message.Append(String.Format("the order is partially shipped "));
+                message.Append(String.Format("the order is partially shipped, "));
 
-            message.Append(String.Format("the customer is {0} ",order.CustomerName));
-            message.Append(String.Format("the order amount including vat is {0} ",order.TotalAmountIncludingTax.ToString("N2")));
+            message.Append(String.Format("the customer is {0}, ",order.CustomerName));
+            message.Append(String.Format("the order amount including vat is {0}, ",order.TotalAmountIncludingTax.ToString("N2")));
 
             if(order.RequestedDeliveryDate.Year!=1)
-                message.Append(String.Format("the request delivery date is {0} ",order.RequestedDeliveryDate.ToString("dd/MM/yyyy")));
+                message.Append(String.Format("the request delivery date is {0}, ",order.RequestedDeliveryDate.ToString("dd/MM/yyyy")));
 
             if(order.PostingDate.Year!=1)
-                message.Append(String.Format("the order has been posted on {0} ",order.PostingDate.ToString("dd/MM/yyyy")));
+                message.Append(String.Format("the order has been posted on {0}, ",order.PostingDate.ToString("dd/MM/yyyy")));
 
             if(order.LastModifiedDateTime.Year!=1)
-                message.Append(String.Format("and last updated {0} ",order.LastModifiedDateTime.ToString("dd/MM/yyyy HH:mm")));
+                message.Append(String.Format("and last updated {0}.",order.LastModifiedDateTime.ToString("dd/MM/yyyy HH:mm")));
 
             return message.ToString();
         }
