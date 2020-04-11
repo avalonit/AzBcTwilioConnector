@@ -14,7 +14,8 @@ namespace com.businesscentral
     {
         [FunctionName("TwilioConnector")]
         public static async Task<HttpResponseMessage> Run(
-           [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+           [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] 
+           HttpRequestMessage req,
            ILogger log,
            ExecutionContext context)
         {
@@ -24,19 +25,28 @@ namespace com.businesscentral
                 .AddEnvironmentVariables()
                 .Build();
 
+            // Incoming whatsapp message is parsed
+            var requestMessage = await req.Content.ReadAsStringAsync();
+            InputMessage parser= new InputMessage(requestMessage);
+
+            // Business Central is queried
             var bcConfig = new ConnectorConfig(config);
-
             BusinessCentraConnector centraConnector = new BusinessCentraConnector(bcConfig);
-            var orders = await centraConnector.GetOrderByNumber("20NB-ORD010");
-            var response = new MessagingResponse().Message(orders.Value[0].CustomerName);
+            var orders = await centraConnector.GetOrderByNumber(parser.MessageOrderNumber);
 
-            var orderDescription = response.ToString();
-
+            // Outcoming whatsapp message is composed
+            MessageComposer composer = new MessageComposer();
+            string replyText=composer.DataBindMessage(orders,parser);
+            
+            // Outcoming whatsapp message is composed
+             var response = new MessagingResponse().Message(replyText);
             return new HttpResponseMessage
             {
-                Content = new StringContent(orderDescription, Encoding.UTF8, "application/xml")
+                Content = new StringContent(response.ToString(), Encoding.UTF8, "application/text")
             };
         }
+
+       
 
     }
 }
