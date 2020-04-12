@@ -38,7 +38,7 @@ namespace com.businesscentral
             MessageComposer composer = new MessageComposer();
             string replyText=composer.DataBindMessage(orders,parser);
             
-            // Outcoming whatsapp message is composed
+            // Outcoming whatsapp message is replied back
              var response = new MessagingResponse().Message(replyText);
             return new HttpResponseMessage
             {
