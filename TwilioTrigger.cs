@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Twilio.TwiML;
@@ -31,7 +30,7 @@ namespace com.businesscentral
 
             // Business Central is queried
             var bcConfig = new ConnectorConfig(config);
-            BusinessCentraConnector centraConnector = new BusinessCentraConnector(bcConfig);
+            BusinessCentralConnector centraConnector = new BusinessCentralConnector(bcConfig);
             var orders = await centraConnector.GetOrderByNumber(parser.MessageOrderNumber);
 
             // Outcoming whatsapp message is composed

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace com.businesscentral
 {
-    public class BusinessCentraConnector
+    public class BusinessCentralConnector
     {
         ConnectorConfig config;
-        public BusinessCentraConnector(ConnectorConfig config)
+        public BusinessCentralConnector(ConnectorConfig config)
         {
             this.config = config;
         }
