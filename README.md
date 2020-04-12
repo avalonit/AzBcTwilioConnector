@@ -9,4 +9,4 @@ SCENARIO
 3. The answer from Business Central is dispatched by the Azure function to the sales man via whatsapp chat.
 
 The description of the project:
-https://businesscentraldotblog.wordpress.com/2020/04/10/whatsapp-integration-easy-and-fast/
+https://www.business-central.blog/2020/04/10/whatsapp-integration-easy-and-fast/
